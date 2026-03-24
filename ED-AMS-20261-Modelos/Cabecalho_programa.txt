@@ -1,0 +1,8 @@
+/*----------------------------------------------------------------------------------*/
+/*   FATEC-São Caetano do Sul                 Estrutura de Dados                    */
+/*                         Id da Atividade: xxxxxxxxxxx                             */
+/*             Objetivo: <<  colocar aqui o objetivo do programa  >>                */
+/*                                                                                  */
+/*                                  Autor: xxxxxxxxxxxxxxxxxxxxxxxxxxx              */
+/*                                                                    Data:xx/xx/xxx*/
+/*----------------------------------------------------------------------------------*/

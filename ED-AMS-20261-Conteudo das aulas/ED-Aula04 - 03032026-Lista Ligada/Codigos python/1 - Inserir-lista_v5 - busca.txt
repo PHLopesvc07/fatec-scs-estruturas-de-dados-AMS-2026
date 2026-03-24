@@ -1,0 +1,190 @@
+'''
+   *-------------------------------------------------------------------------*
+   *                      Incremento: Buscar um Nó                           *
+   *                                                                         *
+   *-------------------------------------------------------------------------*
+   '''
+# ==========================================================
+# Representação de um nó: {"valor": dado, "proximo": None}
+# ==========================================================
+
+def valor_existe(lista_cabeca, valor):
+    atual = lista_cabeca
+    while atual is not None:
+        if atual["valor"] == valor:
+            return True
+        atual = atual["proximo"]
+    return False
+
+
+def inserir_no_inicio(lista_cabeca, valor):
+    if valor_existe(lista_cabeca, valor):
+        print("⚠ Valor duplicado - Inclusão não efetuada.")
+        return lista_cabeca
+
+    novo_no = {"valor": valor, "proximo": lista_cabeca}
+    return novo_no
+
+
+def inserir_no_fim(lista_cabeca, valor):
+    if valor_existe(lista_cabeca, valor):
+        print("⚠ Valor duplicado - Inclusão não efetuada.")
+        return lista_cabeca
+
+    novo_no = {"valor": valor, "proximo": None}
+    
+    if lista_cabeca is None:
+        return novo_no
+    
+    atual = lista_cabeca
+    while atual["proximo"] is not None:
+        atual = atual["proximo"]
+    
+    atual["proximo"] = novo_no
+    return lista_cabeca
+
+
+def inserir_no_meio(lista_cabeca, valor, posicao_apos):
+    if valor_existe(lista_cabeca, valor):
+        print("⚠ Valor duplicado - Inclusão não efetuada.")
+        return lista_cabeca
+
+    atual = lista_cabeca
+    
+    while atual is not None and atual["valor"] != posicao_apos:
+        atual = atual["proximo"]
+    
+    if atual is not None:
+        novo_no = {"valor": valor, "proximo": atual["proximo"]}
+        atual["proximo"] = novo_no
+    else:
+        print("Valor de referência não encontrado na lista.")
+    
+    return lista_cabeca
+
+def remover_no(lista_cabeca, valor):
+    if lista_cabeca is None:
+        print("Lista vazia. Nada para remover.")
+        return lista_cabeca
+
+    atual = lista_cabeca
+    anterior = None
+
+    while atual is not None and atual["valor"] != valor:
+        anterior = atual
+        atual = atual["proximo"]
+
+    if atual is None:  # Valor não encontrado
+        print("⚠ Valor não encontrado. Remoção não efetuada.")
+        return lista_cabeca
+
+    if anterior is None:  # O nó a remover é a cabeça
+        print("Removendo nó da cabeça.")
+        return atual["proximo"]
+
+    # Ajusta o ponteiro para pular o nó atual
+    print("Removendo nó do meio/fim.")
+    anterior["proximo"] = atual["proximo"]
+
+    return lista_cabeca
+def buscar_no(lista_cabeca, valor_procurado):
+    atual = lista_cabeca
+    posicao = 0
+
+    while atual is not None:
+        if atual["valor"] == valor_procurado:
+            return posicao  # Elemento encontrado
+        atual = atual["proximo"]
+        posicao += 1
+
+    return -1  # Não encontrado    
+def exibir_lista(lista_cabeca):
+    if lista_cabeca is None:
+        print("Lista vazia.")
+        return
+    
+    atual = lista_cabeca
+    print("Lista:", end=" ")
+    
+    while atual is not None:
+        print(atual["valor"], end=" -> ")
+        atual = atual["proximo"]
+    
+    print("None")
+
+
+# ==========================================================
+# MENU PRINCIPAL
+# ==========================================================
+
+def menu():
+    lista = None
+    
+    while True:
+        print("\n===== MENU LISTA ENCADEADA =====")
+        print("1 - Inserir no início")
+        print("2 - Inserir no fim")
+        print("3 - Inserir após um valor (meio)")
+        print("4 - Exibir lista")
+        print("5 - Remover nó")
+        print("6 - Buscar nó")
+        print("0 - Sair")
+        
+        opcao = input("Escolha uma opção: ")
+        
+        if opcao == "1":
+            valor = input("Digite o valor a inserir: ")
+            lista = inserir_no_inicio(lista, valor)
+        
+        elif opcao == "2":
+            valor = input("Digite o valor a inserir: ")
+            lista = inserir_no_fim(lista, valor)
+        
+        elif opcao == "3":
+            valor = input("Digite o novo valor: ")
+    
+            while True:
+                referencia = input("Inserir após qual valor existente? (ou digite 'sair'): ")
+                
+                if referencia.lower() == "sair":
+                    print("Saindo da inserção no meio.")
+                    break
+                
+                atual = lista
+                encontrado = False
+                
+                while atual is not None:
+                    if atual["valor"] == referencia:
+                        encontrado = True
+                        break
+                    atual = atual["proximo"]
+                
+                if encontrado:
+                    lista = inserir_no_meio(lista, valor, referencia)
+                    break
+                else:
+                    print("⚠ Valor de referência não encontrado. Tente novamente.")
+        
+        elif opcao == "4":
+            exibir_lista(lista)
+        
+        elif opcao == "5":
+            valor = input("Digite o valor a remover: ")
+            lista = remover_no(lista, valor)
+            
+        elif opcao == "6":
+            valor = input("Digite o valor a buscar: ")
+            resultado = buscar_no(lista, valor)
+
+            if resultado == -1:
+                print("⚠ Valor não encontrado na lista.")
+            else:
+                print(f"✔ Valor encontrado na posição {resultado}.")    
+        elif opcao == "0":
+            print("Encerrando o programa...")
+            break
+        else:
+            print("Opção inválida!")
+
+
+menu()
