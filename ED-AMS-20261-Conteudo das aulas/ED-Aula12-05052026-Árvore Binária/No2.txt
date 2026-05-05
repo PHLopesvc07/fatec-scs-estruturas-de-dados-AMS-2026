@@ -1,0 +1,29 @@
+/*----------------------------------------------------------------------------------*/
+/*   FATEC-São Caetano do Sul                 Estrutura de Dados                    */
+/*                         Registro de aula                                         */
+/*             Objetivo: Incluir o Nó 15 à esquerda                                 */
+/*                                                                                  */
+/*                                  Autor: Prof. Veríssimo                          */
+/*                                                                   Data:05/05/2026*/
+/*----------------------------------------------------------------------------------*/
+class Nodo:
+    def __init__(self, valor):
+        self.valor = valor
+        self.esquerda = None
+        self.direita = None
+
+# 1. Criamos a raiz (já fizemos no passo anterior)
+raiz = Nodo(30)
+
+# 2. Lógica para inserir o 15:
+novo_valor = 15
+
+if novo_valor < raiz.valor:
+    # Se o braço esquerdo estiver vazio, colocamos o novo Nodo ali
+    if raiz.esquerda is None:
+        raiz.esquerda = Nodo(novo_valor)
+        print(f"O valor {novo_valor} foi inserido à ESQUERDA de {raiz.valor}")
+
+# --- Verificação ---
+print(f"Valor da Raiz: {raiz.valor}")
+print(f"Valor à esquerda da raiz: {raiz.esquerda.valor}")

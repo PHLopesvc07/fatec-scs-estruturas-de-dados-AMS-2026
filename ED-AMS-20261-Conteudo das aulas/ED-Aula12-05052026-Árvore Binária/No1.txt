@@ -1,0 +1,21 @@
+/*----------------------------------------------------------------------------------*/
+/*   FATEC-São Caetano do Sul                 Estrutura de Dados                    */
+/*                         Registro de aula                                         */
+/*             Objetivo: Incluir o Nó raiz                                          */
+/*                                                                                  */
+/*                                  Autor: Prof. Veríssimo                          */
+/*                                                                   Data:05/05/2026*/
+/*----------------------------------------------------------------------------------*/
+
+class Nodo:
+    def __init__(self, valor):
+        self.valor = valor
+        self.esquerda = None  # Espaço para um futuro nó menor
+        self.direita = None   # Espaço para um futuro nó maior
+
+# Criando a árvore apenas com a raiz
+raiz = Nodo(30)
+
+print(f"Raiz da árvore criada com o valor: {raiz.valor}")
+print(f"Filho à esquerda: {raiz.esquerda}")
+print(f"Filho à direita: {raiz.direita}")

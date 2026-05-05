@@ -1,0 +1,31 @@
+/*----------------------------------------------------------------------------------*/
+/*   FATEC-São Caetano do Sul                 Estrutura de Dados                    */
+/*                         Registro de aula                                         */
+/*             Objetivo: Incluir o 40  à esquerda do nó RAIZ                                          */
+/*                                                                                  */
+/*                                  Autor: Prof. Veríssimo                          */
+/*                                                                   Data:05/05/2026*/
+/*----------------------------------------------------------------------------------*/
+class Nodo:
+    def __init__(self, valor):
+        self.valor = valor
+        self.esquerda = None
+        self.direita = None
+
+# --- Estado anterior da árvore ---
+raiz = Nodo(30)
+raiz.esquerda = Nodo(15)
+raiz.esquerda.direita = Nodo(20)
+
+# --- Inserindo o 40 ---
+novo = 40
+
+if novo > raiz.valor:
+    # O braço direito está vazio? Sim!
+    if raiz.direita is None:
+        raiz.direita = Nodo(novo)
+        print(f"O valor {novo} é maior que {raiz.valor}, por isso foi para a DIREITA.")
+
+# --- Verificação ---
+print(f"Raiz: {raiz.valor}")
+print(f"Filho Direito: {raiz.direita.valor}")
